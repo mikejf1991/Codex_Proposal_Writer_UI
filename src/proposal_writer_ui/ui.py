@@ -195,6 +195,64 @@ def inject_styles() -> None:
                 color: #1d2528 !important;
             }
 
+            .stButton > button {
+                color: var(--ink) !important;
+                border: 1px solid rgba(31, 42, 46, 0.2) !important;
+                background: rgba(255, 250, 242, 0.92) !important;
+            }
+
+            .stButton > button[kind="primary"] {
+                color: #fff7f1 !important;
+                background: #c4572b !important;
+                border-color: #b24d24 !important;
+            }
+
+            .stButton > button:hover {
+                color: var(--ink) !important;
+                border-color: rgba(31, 42, 46, 0.34) !important;
+                background: rgba(255, 248, 238, 1) !important;
+            }
+
+            .stButton > button[kind="primary"]:hover {
+                color: #fff7f1 !important;
+                background: #ae4822 !important;
+                border-color: #9a3f1d !important;
+            }
+
+            section[data-testid="stSidebar"] .stButton > button {
+                color: #f6efe6 !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            }
+
+            section[data-testid="stSidebar"] .stButton > button:hover {
+                color: #fff7f1 !important;
+                background: rgba(255, 255, 255, 0.12) !important;
+                border-color: rgba(255, 255, 255, 0.24) !important;
+            }
+
+            section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+                color: #fff7f1 !important;
+                background: #ff5252 !important;
+                border-color: #ff5252 !important;
+            }
+
+            section[data-testid="stSidebar"] .stButton > button[kind="primary"]:hover {
+                color: #fff7f1 !important;
+                background: #f04a4a !important;
+                border-color: #f04a4a !important;
+            }
+
+            .stButton > button:disabled,
+            .stButton > button[disabled],
+            section[data-testid="stSidebar"] .stButton > button:disabled,
+            section[data-testid="stSidebar"] .stButton > button[disabled] {
+                color: rgba(246, 239, 230, 0.6) !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+                border-color: rgba(255, 255, 255, 0.12) !important;
+                opacity: 1 !important;
+            }
+
             @media (prefers-color-scheme: dark) {
                 .stApp {
                     color-scheme: light;

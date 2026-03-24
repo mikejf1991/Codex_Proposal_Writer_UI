@@ -19,7 +19,7 @@
 
 - Current Branch: main
 - Active Task: None.
-- Last Meaningful Action: Fixed placeholder contrast so form guidance remains readable against the light field background.
+- Last Meaningful Action: Fixed secondary and disabled button contrast, especially in the dark sidebar.
 - Files In Flight: None.
 - Verification Status: `python -m compileall src streamlit_app.py` and a headless Streamlit boot check passed.
 - Resume From: Replace the current OpenAI adapter with the desired Codex-style backend or tool runner, then deepen interrogation and draft-evaluation loops.

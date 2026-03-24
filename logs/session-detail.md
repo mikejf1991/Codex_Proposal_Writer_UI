@@ -122,3 +122,36 @@ Verification
 
 Open Items
 - None.
+
+## 2026-03-24 10:06 America/Chicago
+Entry ID: LOG-0004
+Request
+- Fix low-contrast black buttons that remained hard to read after the earlier contrast updates.
+
+Context
+- The placeholder and field text were readable after the prior pass.
+- Streamlit's default secondary and disabled button styles still rendered poorly, especially in the dark sidebar where button labels and borders looked muddy.
+
+Actions
+- Added explicit CSS for button text, borders, backgrounds, hover states, and disabled states.
+- Added sidebar-specific button overrides so the project controls remain legible against the dark panel.
+- Kept primary buttons visually distinct while making non-primary controls readable.
+
+Files Changed
+- `PROJECT_STATE.md`
+- `logs/session-summary.md`
+- `logs/session-detail.md`
+- `src/proposal_writer_ui/ui.py`
+
+Change Scope
+- Improve button contrast and clarity across the main canvas and sidebar.
+
+Actual Change Scope
+- Added explicit styling for primary, secondary, hover, and disabled buttons, with sidebar-specific contrast overrides.
+
+Verification
+- `python -m compileall src streamlit_app.py`: passed.
+- Headless Streamlit startup on port `8521`: passed.
+
+Open Items
+- None.

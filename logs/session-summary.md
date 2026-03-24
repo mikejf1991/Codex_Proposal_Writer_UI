@@ -17,3 +17,9 @@ Entry ID: LOG-0003
 Request: Fix placeholder text readability in the intake form.
 Discussion: Placeholder text was still inheriting a too-light theme color even after the broader contrast pass.
 Outcome: Added explicit placeholder styling so guidance text remains readable in the light input fields.
+
+## 2026-03-24 10:06 America/Chicago
+Entry ID: LOG-0004
+Request: Fix unclear black and low-contrast buttons in the UI, especially in the sidebar.
+Discussion: Streamlit's default secondary and disabled button styling was still bleeding through and looked muddy against the dark sidebar.
+Outcome: Added explicit button styling for normal, primary, hover, and disabled states so actions are readable across the app.
