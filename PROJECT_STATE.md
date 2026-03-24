@@ -12,17 +12,17 @@
 ## Current State
 
 - Active Objective: Build the first generation-stage proposal writer interface in Python.
-- Open Issues: Literature-scout and Zotero integrations are represented as workflow hooks but not yet wired to external skills.
+- Open Issues: Literature-scout and Zotero integrations are represented as workflow hooks but not yet wired to external skills; the current app uses an OpenAI Responses adapter rather than a full Codex agent runtime.
 - Next Recommended Step: Validate the UI scaffold, then deepen the interrogation and drafting loops.
 
 ## Active Session Handoff
 
 - Current Branch: main
 - Active Task: None.
-- Last Meaningful Action: Built and verified the first proposal-writer UI bootstrap on the new project remote.
+- Last Meaningful Action: Fixed UI contrast and added project-local LLM run logging with AGENT hash tracking.
 - Files In Flight: None.
-- Verification Status: `python -m pip install -e .`, import checks, storage round-trip test, `python -m compileall src streamlit_app.py`, and a headless Streamlit boot check passed.
-- Resume From: Extend the interrogation logic, deepen draft-evaluation loops, and wire the literature-scout and Zotero integrations.
+- Verification Status: `python -m compileall src streamlit_app.py`, orchestrator log creation test, and a headless Streamlit boot check passed.
+- Resume From: Replace the current OpenAI adapter with the desired Codex-style backend or tool runner, then deepen interrogation and draft-evaluation loops.
 
 ## Open Loops
 

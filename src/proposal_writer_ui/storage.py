@@ -11,6 +11,7 @@ from proposal_writer_ui.models import DocumentCategory, DocumentRecord, Proposal
 PROJECT_FILE_NAME = "project.json"
 ATTACHMENTS_DIR_NAME = "attachments"
 OUTPUTS_DIR_NAME = "outputs"
+RUN_LOG_FILE_NAME = "llm-runs.jsonl"
 
 
 def projects_root(root_dir: Path) -> Path:
@@ -86,6 +87,16 @@ def write_output_artifact(root_dir: Path, project: ProposalProject, name: str, c
     file_name = f"{slugify(name)}.md"
     target = output_dir / file_name
     target.write_text(content, encoding="utf-8")
+    return target
+
+
+def append_llm_run_log(root_dir: Path, project: ProposalProject, entry: dict[str, object]) -> Path:
+    output_dir = project_dir(root_dir, project) / OUTPUTS_DIR_NAME
+    output_dir.mkdir(parents=True, exist_ok=True)
+    target = output_dir / RUN_LOG_FILE_NAME
+    with target.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(entry))
+        handle.write("\n")
     return target
 
 

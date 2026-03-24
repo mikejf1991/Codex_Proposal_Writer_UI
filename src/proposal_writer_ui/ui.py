@@ -81,6 +81,8 @@ def inject_styles() -> None:
                 --accent: #8a4f2b;
                 --leaf: #5c7666;
                 --line: rgba(31, 42, 46, 0.12);
+                --muted: rgba(31, 42, 46, 0.74);
+                --field-bg: rgba(255, 250, 242, 0.9);
             }
 
             .stApp {
@@ -90,6 +92,10 @@ def inject_styles() -> None:
                     linear-gradient(180deg, #f7f2e9 0%, #efe7db 100%);
                 color: var(--ink);
                 font-family: 'IBM Plex Sans', sans-serif;
+            }
+
+            .stApp, .stApp p, .stApp li, .stApp label, .stApp span, .stApp div {
+                color: var(--ink);
             }
 
             h1, h2, h3 {
@@ -117,7 +123,7 @@ def inject_styles() -> None:
 
             .hero-copy {
                 max-width: 56rem;
-                color: rgba(31, 42, 46, 0.82);
+                color: var(--muted);
                 margin-bottom: 0;
             }
 
@@ -139,6 +145,53 @@ def inject_styles() -> None:
                 font-size: 0.78rem;
                 margin-right: 0.35rem;
                 margin-bottom: 0.35rem;
+            }
+
+            .stTabs [data-baseweb="tab-list"] button {
+                color: var(--muted);
+            }
+
+            .stTabs [aria-selected="true"] {
+                color: var(--accent);
+            }
+
+            .stTextInput label,
+            .stTextArea label,
+            .stSelectbox label,
+            .stRadio label,
+            .stCheckbox label,
+            .stToggle label,
+            .stFileUploader label,
+            .stMultiSelect label {
+                color: var(--ink) !important;
+            }
+
+            .stTextInput input,
+            .stTextArea textarea,
+            .stSelectbox [data-baseweb="select"] > div {
+                color: var(--ink) !important;
+                background: var(--field-bg) !important;
+                border-color: rgba(31, 42, 46, 0.18) !important;
+            }
+
+            .stRadio div[role="radiogroup"] label,
+            .stCheckbox label,
+            .stToggle label {
+                color: var(--ink) !important;
+            }
+
+            .stAlert {
+                color: var(--ink);
+            }
+
+            code, pre {
+                color: #1d2528 !important;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                .stApp {
+                    color-scheme: light;
+                }
             }
         </style>
         """,
@@ -412,4 +465,7 @@ def render_status_panel(project: ProposalProject, orchestrator: ProposalOrchestr
     st.markdown("### Draft Progress")
     for section in project.sections:
         st.write(f"{section.title}: {section.status.value} (round {section.revision_round})")
+    output_dir = ROOT_DIR / "projects" / project.project_id / "outputs" / "llm-runs.jsonl"
+    if output_dir.exists():
+        st.caption(f"LLM run log: {output_dir}")
     st.markdown("</div>", unsafe_allow_html=True)

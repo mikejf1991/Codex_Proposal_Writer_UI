@@ -51,6 +51,13 @@ This file defines output rules for all LLM-assisted work in this repository.
 2. If a statement is inferred rather than directly supported, label it as an inference.
 3. Never fabricate literature references or supporting documents.
 
+## Logging
+
+1. Log substantive LLM work. Interrogation question sets, section drafts, and section refinements should be recorded by the controlling application.
+2. Keep logs concise but useful for restoration: timestamp, operation, model, prompt summary, and output summary.
+3. Do not log secrets or credential material.
+4. Treat logging as required workflow hygiene, not an optional extra.
+
 ## Interaction Contract
 
 1. Ask comprehensive but non-redundant questions.

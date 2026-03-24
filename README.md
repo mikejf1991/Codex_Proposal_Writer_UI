@@ -23,4 +23,5 @@ Set `OPENAI_API_KEY` if you want live LLM calls through the OpenAI Responses API
 ## Notes
 
 - All LLM prompts in the app load and apply the local `AGENT.MD` rules.
+- Each project stores LLM run logs in `projects/<project-id>/outputs/llm-runs.jsonl`.
 - The first pass includes placeholders for literature scouting and Zotero-assisted flows so those integrations can be wired in without reshaping the project model.

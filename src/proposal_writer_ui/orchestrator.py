@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
+from uuid import uuid4
 
 from proposal_writer_ui.llm import TextGenerationClient, build_client
 from proposal_writer_ui.models import (
@@ -9,8 +11,9 @@ from proposal_writer_ui.models import (
     InterrogationTurn,
     ProposalProject,
     SectionDraft,
+    now_iso,
 )
-from proposal_writer_ui.storage import summarize_documents, write_output_artifact
+from proposal_writer_ui.storage import append_llm_run_log, summarize_documents, write_output_artifact
 
 
 class ProposalOrchestrator:
@@ -18,6 +21,30 @@ class ProposalOrchestrator:
         self.root_dir = root_dir
         self.client = client or build_client()
         self.agent_rules = (root_dir / "AGENT.MD").read_text(encoding="utf-8")
+
+    def log_llm_run(
+        self,
+        project: ProposalProject,
+        operation: str,
+        prompt: str,
+        output: str,
+    ) -> None:
+        append_llm_run_log(
+            self.root_dir,
+            project,
+            {
+                "run_id": uuid4().hex,
+                "timestamp": now_iso(),
+                "operation": operation,
+                "model": project.settings.llm_model,
+                "agent_file": "AGENT.MD",
+                "agent_sha256": hashlib.sha256(self.agent_rules.encode("utf-8")).hexdigest(),
+                "discovery_mode": project.settings.discovery_mode.value,
+                "autonomy_level": project.settings.autonomy_level.value,
+                "prompt_preview": prompt[:3000],
+                "output_preview": output[:3000],
+            },
+        )
 
     def readiness_notes(self, project: ProposalProject) -> list[str]:
         document_summary = summarize_documents(project.documents)
@@ -95,6 +122,7 @@ class ProposalOrchestrator:
             prompt=prompt,
             model=project.settings.llm_model,
         )
+        self.log_llm_run(project, "interrogation_questions", prompt, output)
         write_output_artifact(self.root_dir, project, "interrogation-question-set", output)
         return output
 
@@ -130,6 +158,7 @@ class ProposalOrchestrator:
         section.status = DraftStatus.READY_FOR_REVIEW
         section.revision_round += 1
         section.updated_at = project.updated_at
+        self.log_llm_run(project, f"draft_section:{section.section_id}", prompt, output)
         write_output_artifact(self.root_dir, project, section.title, output)
         return output
 
@@ -157,5 +186,6 @@ class ProposalOrchestrator:
         section.status = DraftStatus.REFINED
         section.revision_round += 1
         section.updated_at = project.updated_at
+        self.log_llm_run(project, f"refine_section:{section.section_id}", prompt, output)
         write_output_artifact(self.root_dir, project, f"{section.title}-refined", output)
         return output
