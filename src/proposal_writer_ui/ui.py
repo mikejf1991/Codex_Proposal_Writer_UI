@@ -174,6 +174,13 @@ def inject_styles() -> None:
                 border-color: rgba(31, 42, 46, 0.18) !important;
             }
 
+            .stTextInput input::placeholder,
+            .stTextArea textarea::placeholder {
+                color: rgba(31, 42, 46, 0.52) !important;
+                -webkit-text-fill-color: rgba(31, 42, 46, 0.52) !important;
+                opacity: 1 !important;
+            }
+
             .stRadio div[role="radiogroup"] label,
             .stCheckbox label,
             .stToggle label {

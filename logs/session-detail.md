@@ -90,3 +90,35 @@ Verification
 Open Items
 - Replace the OpenAI Responses adapter with the intended Codex integration approach if direct Codex runtime behavior is required.
 - Decide whether the full prompt and full output should be logged rather than previews only.
+
+## 2026-03-24 10:04 America/Chicago
+Entry ID: LOG-0003
+Request
+- Fix placeholder text that remained too faint inside the intake form text areas.
+
+Context
+- The broader contrast update corrected labels and field text.
+- Placeholder text inside the light form fields was still inheriting a near-white color from Streamlit's internal theme styles.
+
+Actions
+- Added explicit `::placeholder` overrides for text inputs and text areas in the Streamlit CSS.
+- Forced a darker muted placeholder color and disabled opacity fade so helper text stays readable.
+
+Files Changed
+- `PROJECT_STATE.md`
+- `logs/session-summary.md`
+- `logs/session-detail.md`
+- `src/proposal_writer_ui/ui.py`
+
+Change Scope
+- Tighten placeholder contrast in the intake UI.
+
+Actual Change Scope
+- Added explicit placeholder-color styling for text inputs and text areas and reverified the app booted.
+
+Verification
+- `python -m compileall src streamlit_app.py`: passed.
+- Headless Streamlit startup on port `8520`: passed.
+
+Open Items
+- None.
