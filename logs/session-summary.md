@@ -23,3 +23,9 @@ Entry ID: LOG-0004
 Request: Fix unclear black and low-contrast buttons in the UI, especially in the sidebar.
 Discussion: Streamlit's default secondary and disabled button styling was still bleeding through and looked muddy against the dark sidebar.
 Outcome: Added explicit button styling for normal, primary, hover, and disabled states so actions are readable across the app.
+
+## 2026-03-24 10:08 America/Chicago
+Entry ID: LOG-0005
+Request: Make the sidebar button text lighter against the dark background.
+Discussion: The button container colors were improved, but the inner text nodes were still inheriting darker theme colors in some sidebar states.
+Outcome: Added explicit sidebar button descendant color rules and brighter disabled-state text styling.

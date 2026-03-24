@@ -225,10 +225,18 @@ def inject_styles() -> None:
                 border: 1px solid rgba(255, 255, 255, 0.16) !important;
             }
 
+            section[data-testid="stSidebar"] .stButton > button * {
+                color: #f6efe6 !important;
+            }
+
             section[data-testid="stSidebar"] .stButton > button:hover {
                 color: #fff7f1 !important;
                 background: rgba(255, 255, 255, 0.12) !important;
                 border-color: rgba(255, 255, 255, 0.24) !important;
+            }
+
+            section[data-testid="stSidebar"] .stButton > button:hover * {
+                color: #fff7f1 !important;
             }
 
             section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
@@ -237,20 +245,37 @@ def inject_styles() -> None:
                 border-color: #ff5252 !important;
             }
 
+            section[data-testid="stSidebar"] .stButton > button[kind="primary"] * {
+                color: #fff7f1 !important;
+            }
+
             section[data-testid="stSidebar"] .stButton > button[kind="primary"]:hover {
                 color: #fff7f1 !important;
                 background: #f04a4a !important;
                 border-color: #f04a4a !important;
             }
 
+            section[data-testid="stSidebar"] .stButton > button[kind="primary"]:hover * {
+                color: #fff7f1 !important;
+            }
+
             .stButton > button:disabled,
             .stButton > button[disabled],
             section[data-testid="stSidebar"] .stButton > button:disabled,
             section[data-testid="stSidebar"] .stButton > button[disabled] {
-                color: rgba(246, 239, 230, 0.6) !important;
-                background: rgba(255, 255, 255, 0.04) !important;
-                border-color: rgba(255, 255, 255, 0.12) !important;
+                color: rgba(241, 232, 220, 0.78) !important;
+                background: rgba(255, 255, 255, 0.08) !important;
+                border-color: rgba(255, 255, 255, 0.18) !important;
+                -webkit-text-fill-color: rgba(241, 232, 220, 0.78) !important;
                 opacity: 1 !important;
+            }
+
+            .stButton > button:disabled *,
+            .stButton > button[disabled] *,
+            section[data-testid="stSidebar"] .stButton > button:disabled *,
+            section[data-testid="stSidebar"] .stButton > button[disabled] * {
+                color: rgba(241, 232, 220, 0.78) !important;
+                -webkit-text-fill-color: rgba(241, 232, 220, 0.78) !important;
             }
 
             @media (prefers-color-scheme: dark) {

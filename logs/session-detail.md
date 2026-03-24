@@ -155,3 +155,36 @@ Verification
 
 Open Items
 - None.
+
+## 2026-03-24 10:08 America/Chicago
+Entry ID: LOG-0005
+Request
+- Make the sidebar button text lighter and more legible against the dark sidebar background.
+
+Context
+- The prior button pass improved the button shells and borders.
+- Some sidebar button labels, especially disabled ones, were still drawing with dark inner text because Streamlit's internal child elements were not inheriting the outer button color overrides.
+
+Actions
+- Added sidebar-specific descendant selectors so button child text follows the intended light foreground color.
+- Brightened disabled button text and slightly raised the disabled button background and border contrast.
+- Reverified compile and startup after the styling change.
+
+Files Changed
+- `PROJECT_STATE.md`
+- `logs/session-summary.md`
+- `logs/session-detail.md`
+- `src/proposal_writer_ui/ui.py`
+
+Change Scope
+- Tighten sidebar button label contrast.
+
+Actual Change Scope
+- Styled sidebar button descendants directly and improved disabled-state text visibility.
+
+Verification
+- `python -m compileall src streamlit_app.py`: passed.
+- Headless Streamlit startup on port `8522`: passed.
+
+Open Items
+- None.
